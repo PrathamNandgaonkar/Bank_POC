@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: npci-mock-service
+
+npci:
+  simulation:
+    min-processing-delay-ms: 100
+    max-processing-delay-ms: 2000
+    default-failure-rate: 0.0
+    default-timeout-rate: 0.0
+    duplicate-detection: true
+    max-amount-limit: 1000000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  level:
+    com.bankpoc: DEBUG

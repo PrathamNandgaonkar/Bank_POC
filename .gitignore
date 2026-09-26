@@ -1,0 +1,18 @@
+# Maven
+target/
+*.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Application Logs
+logs/
+*.log
+
+# Mac
+.DS_Store
+
+# DB (just in case)
+*.db

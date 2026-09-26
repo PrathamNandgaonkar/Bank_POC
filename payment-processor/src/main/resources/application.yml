@@ -1,0 +1,55 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: payment-processor
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bankpoc
+    username: bankpoc_user
+    password: bankpoc_pass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+app:
+  npci:
+    base-url: http://localhost:8081
+    timeout-seconds: 30
+    max-retries: 3
+    circuit-breaker:
+      failure-threshold: 5
+      recovery-timeout-seconds: 30
+  processing:
+    batch-size: 50
+    thread-pool-size: 4
+    max-file-size-mb: 10
+  directories:
+    incoming: /incoming
+    processing: /processing
+    completed: /completed
+    failed: /failed
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.bankpoc: DEBUG
+    org.springframework: WARN

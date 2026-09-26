@@ -1,0 +1,20 @@
+apiVersion: 1
+
+datasources:
+  - name: Loki
+    type: loki
+    access: proxy
+    url: http://localhost:3100
+    isDefault: true
+    version: 1
+    editable: true
+  - name: PostgreSQL
+    type: postgres
+    url: localhost:5432
+    user: postgres
+    password: password
+    database: bankpoc
+    version: 1
+    editable: true
+    jsonData:
+      sslmode: disable
